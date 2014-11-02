@@ -41,8 +41,7 @@ namespace CSVUtil
                 conn.Open();
                 var comm = conn.CreateCommand();
                 comm.CommandText =
-                    @"INSERT INTO Customers (TypeID, CustomerID, SiteID, Name, SiteName, Terms, CreditLimit) 
-                      VALUES (@TypeID, @CustomerID, @SiteID, @Name, @SiteName, @Terms, @CreditLimit)";
+                    "INSERT INTO Customers (TypeID, CustomerID, SiteID, Name, SiteName, Terms, CreditLimit) VALUES (@TypeID, @CustomerID, @SiteID, @Name, @SiteName, @Terms, @CreditLimit)";
 
                 // Define params
                 List<SqlParameter> parameters = new List<SqlParameter>();
@@ -68,14 +67,14 @@ namespace CSVUtil
             System.Text.StringBuilder queryString = new StringBuilder();
 
             // Define fields to be inserted
-            queryString.AppendLine("INSERT INTO Customers (TypeID, CustomerID, SiteID, Name, SiteName, Terms, CreditLimit) ");
+            queryString.AppendLine("INSERT INTO Customers (TypeID, CustomerID, SiteID, Name, SiteName, Terms, CreditLimit) VALUES ");
 
             // Build up the string for each item
             for (int i = 0; i < newCustomers.Count(); ++i)
             {
                 currCust = newCustomers.ElementAt(i);
                 valueString = String.Format(
-                    "VALUES ({0}, {1}, {2}, {3}, {4}, {5}, {6}",
+                    " ({0}, '{1}', '{2}', '{3}', '{4}', '{5}', {6})",
                     0,
                     currCust.CustomerID,
                     currCust.SiteID,

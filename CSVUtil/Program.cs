@@ -11,6 +11,7 @@ namespace CSVUtil
     {
         static void Main(string[] args)
         {
+            CustomerRepo cr = new CustomerRepo("SERVER=SPLITHPC;DATABASE=FVMaster;TRUSTED_CONNECTION=TRUE;");
             String userFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             CsvFileDescription inpurFile = new CsvFileDescription
             {
@@ -23,8 +24,7 @@ namespace CSVUtil
                 cc.Read<Contract.CustomerContract>(userFolder + @"\customers.csv", inpurFile);
             Model.Customer customer = null;
 
-            foreach (var c in customers)
-                customer = c.GetCustomer;
+            cr.CreateCustomer(customers.Select(c => c.GetCustomer));
         }
     }
 }
